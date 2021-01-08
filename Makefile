@@ -61,22 +61,28 @@ SRCS = ft_is/ft_isalnum.c \
        printf/ft_set_flags.c 
 
 OBJS = $(SRCS:.c=.o)
-
+_BLUE=\033[1;34m
+_GREEN=\033[92m
+_NC=\033[0m
 all:    $(NAME)
 
 $(NAME): $(OBJS)
+	@echo "$(_BLUE)files .o created.$(NC)"
+	@echo "$(_GREEN)$(NAME) created.$(NC)"
 	@$(ARC) $(NAME) $(OBJS)
 
 %.o:%.c $(INC)
 	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
 clean:
+	@echo "$(_BLUE)files .o remove.$(NC)"
 	@rm -f $(OBJS) $(B_OBJS)
 
 fclean: clean
+	@echo "$(_GREEN)$(NAME) remove.$(NC)"
 	@rm -f $(NAME) $(B_NAME)
 
 re: fclean all 
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re $(NAME)
 
